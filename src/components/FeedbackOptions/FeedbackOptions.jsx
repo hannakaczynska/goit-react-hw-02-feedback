@@ -1,57 +1,26 @@
-import { Component } from "react";
+import React from 'react'
 
-class FeedbackOptions extends Component {
-static defaultProps = {
-    step: 1,
-};
-
-state = {
-  good: 0,
-  neutral: 0,
-  bad: 0
+const FeedbackOptions = ({options, onLeaveFeedback}) => {
+  return (<>
+      <h3>Please leave feedback</h3>
+      <div>
+          {options.map(option => {
+              console.log(option)
+              return (
+        <button
+            name={option}
+            type="button"
+            value={ option }
+            onClick={onLeaveFeedback}>
+            { option }
+        </button>) })}
+     </div>
+    </>
+  )
 }
 
-handleClick = e => {
-    const { name, value } = e.target;
-    const { step } = this.props;
-    this.setState({
-        [name]: +value + step  
-    })  
-}
-    
-    render() {
-    const { good, neutral, bad } = this.state
-        return <>
-            <h3>Please leave feedback</h3>
-            <div>
-                <button
-                    name="good"
-                    type="button"
-                    value={good}
-                    onClick={this.handleClick}>
-                    Good
-                </button>
-                <button
-                    name="neutral"
-                    type="button"
-                    value={neutral}
-                    onClick={this.handleClick}>
-                    Neutral
-                </button>
-                <button
-                    name="bad"
-                    type="button"
-                    value={bad}
-                    onClick={this.handleClick}>
-                    Bad
-                </button>
-            </div>
-        </>
-    }
+export default FeedbackOptions
 
-}
-
-export default FeedbackOptions;
 
 
 
